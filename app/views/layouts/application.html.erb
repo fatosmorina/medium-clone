@@ -10,17 +10,10 @@
 
   <body>
 
-    <header>
-      <%= link_to 'Write an article', new_post_path %>
-      <% if user_signed_in? %>
-        <% current_user.email %>
-      <% end %>
-    </header>
-
+    <%= render "layouts/header" %>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
     <%= yield %>
   </body>
 </html>
