@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'Creating post' do
 
-  let(:user) { User.create(username: 'username', email: 'email@email.com', password: 'password', password_confirmation: 'password')}
 
   scenario 'successfully' do
     visit root_path
