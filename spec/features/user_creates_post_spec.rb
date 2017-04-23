@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Creating post' do
-
+  let(:user) { create(:user) }
 
   scenario 'successfully' do
     visit root_path
@@ -13,7 +13,7 @@ RSpec.describe 'Creating post' do
 
     within('.posts') do
       expect(page).to have_content('Introduction')
-      expect(page).to have_content('username')
+      expect(page).to user.username
     end
   end
 
