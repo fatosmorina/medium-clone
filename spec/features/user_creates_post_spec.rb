@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Creating post' do
+
+  let(:user) { User.create(username: 'username', email: 'email@email.com', password: 'password', password_confirmation: 'password')}
+
   scenario 'successfully' do
     visit root_path
     click_on 'Write an article'
@@ -9,10 +12,14 @@ RSpec.describe 'Creating post' do
     fill_in 'Body', with: 'Introduction'
     click_on 'Publish'
 
-    expect(page).to have_content 'Introduction'
+    within('.posts') do
+      expect(page).to have_content('Introduction')
+      expect(page).to have_content('username')
+    end
   end
 
   scenario 'unsuccessfully' do
+    sign_in user
     visit root_path
     click_on 'Write an article'
 
@@ -21,6 +28,13 @@ RSpec.describe 'Creating post' do
     click_on 'Publish'
 
     expect(page).to have_css '.error'
+  end
+
+  scenario ' non-logged in user cannot create a new article' do
+    visit root_path
+    click_on 'Write an article'
+    
+    expect(current_path).to eq(new_user_session_path)
   end
 
 end
