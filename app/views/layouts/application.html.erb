@@ -12,6 +12,9 @@
 
     <header>
       <%= link_to 'Write an article', new_post_path %>
+      <% if user_signed_in? %>
+        <% current_user.email %>
+      <% end %>
     </header>
 
 
