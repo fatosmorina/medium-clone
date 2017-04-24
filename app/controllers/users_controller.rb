@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, only: [:edit, :update]
-  before_action :check_authorization, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:edit, :update]
+  before_action :authorize_user, only: [:edit, :update]
   before_action :set_user
 
   def show
@@ -10,11 +10,17 @@ class UsersController < ApplicationController
   end	
 
   def update
+  	if @user.update(user_params)
+  		redirect_to @user
+  	else
+  		flash.now[:alert] = 'Something went wrong. Please try again'
+  		render :edit
+  	end	
   end
 
   private
 
-  def check_authorization
+  def authorize_user
   	unless current_user.id == params[:id]
   		redirect_to root_url
   	end
@@ -24,4 +30,7 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   end
 
+  def user_params
+   params.require(:user).permit(:username)
+  end
 end
