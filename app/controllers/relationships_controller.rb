@@ -16,7 +16,8 @@ class RelationshipsController < ApplicationController
 
   private 
 
-  def find_user
+   def find_user
   	@user = User.find(params[:user_id])
-  end
+   end
+
 end
