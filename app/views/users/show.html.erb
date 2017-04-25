@@ -11,7 +11,7 @@
 	<% if current_user.following?(@user) %>	
 		<button>Unfollow</button>
 	 <% else %>
-	 	<button>Follow</button>
+	 	<%= button_to 'Follow', relationships_path(user_id: @user.id) %>
 	<% end %>
 <% end %>
 
