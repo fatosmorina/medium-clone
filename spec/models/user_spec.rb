@@ -5,14 +5,16 @@ RSpec.describe User do
 
 	describe 'following and unfollowing other users' do
 	  let(:filan) { create(:user, username: 'Filan Fisteku')}
-	  let(:solo){ create(:user, username: 'Ben Doe') }	
+	  let(:ben){ create(:user, username: 'Ben Doe') }	
 
 	  it 'follows and unfollows a user' do
-	  	filan.follow(solo)
-	  	expect(filan.following?(solo)).to be_truthy
+	  	expect(filan).not_to be_following(ben)
+
+	  	filan.follow(ben)
+	  	expect(ben.followers).to include(filan)
 	  	
-	  	filan.unfollow(solo)
-	  	expect(filan.following?(solo)).to be_falsy
+	  	filan.unfollow(ben)
+	  	expect(filan.followers).not_to include(filan)
 	  end
 	 
 	end
