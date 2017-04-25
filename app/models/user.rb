@@ -23,6 +23,9 @@ class User < ApplicationRecord
   end
   
   def unfollow(other_user)
+  end
+
+  def folllowing?()
   end	 	
 
   validates :username, presence: true
