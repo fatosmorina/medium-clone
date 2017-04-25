@@ -5,9 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :posts, dependent: :destroy
 
-  validates :username, presence: true
 
-  mount_uploader :avatar, AvatarUploader
 
   has_many :passive_relationships, class_name: 'Relationship',
   				foreign_key: 'followed_id', depdendent: :destroy
@@ -20,6 +18,15 @@ class User < ApplicationRecord
   
   has_many :followings, through: :active_relationships, source: :followed				
 
+
+  def follow(other_user)
+  end
+  
+  def unfollow(other_user)
+  end	 	
+
+  validates :username, presence: true
+  mount_uploader :avatar, AvatarUploader
 end
 
 
