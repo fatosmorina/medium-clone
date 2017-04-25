@@ -35,6 +35,10 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.include FactoryGirl::Syntax::Methods
   
+  config.before do
+    FactoryGirl.find_definitions
+  end
+
   # DatabaseCleaner configuration.
   config.before(:suite) do
     DatabaseCleaner.clean_with :truncation
