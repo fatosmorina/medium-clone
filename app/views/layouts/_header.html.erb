@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <%= link_to "Medium clone" %><a class="navbar-brand" href="#">Medium clone</a>
+    <%= link_to "Medium clone", root_path, class: "navbar-brand" %>
     <ul class="nav navbar-nav navbar-right">
       <li class="new-story-button"> <%= link_to 'Write an article', new_post_path, class: "button" %></li>
       <% if user_signed_in? %>
