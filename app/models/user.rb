@@ -9,8 +9,17 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
-  has_many :passive_relationships, class_name: 'Relationship'
+  has_many :passive_relationships, class_name: 'Relationship',
+  				foreign_key: 'followed_id', depdendent: :destroy
+
+
+  has_many :followers, :passive_relationships
+
+  has_many :active_relationships, class_name: 'Relationship',
+  				foreign_key: 'follower_id', dependent: :destroy
   
+  has_many :following, through: :active_relationships				
+
 end
 
 
