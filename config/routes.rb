@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   root 'homes#show'
   resources :posts
   resources :users, only: [:show, :edit, :update]
+  resource :relationships, only: [:create, :destroy]
 
 end
