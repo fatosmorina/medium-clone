@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
+  has_many :passive_relationships, class_name: 'Relationship'
   
 end
 
